@@ -1,8 +1,8 @@
-import { IonContent, IonFab, IonFabButton, IonHeader, IonIcon, IonList, IonLoading, IonPage, IonTitle, IonToolbar } from "@ionic/react";
+import { IonButton, IonButtons, IonContent, IonFab, IonFabButton, IonHeader, IonIcon, IonList, IonLoading, IonPage, IonTitle, IonToolbar } from "@ionic/react";
 import React, { useContext } from "react";
 import { getLogger } from "../core";
 import Movie from "./Movie";
-import { add } from 'ionicons/icons';
+import { add, addCircleOutline, addOutline, addSharp, pulse } from 'ionicons/icons';
 import { MovieContext } from "./MovieProvider";
 import { RouteComponentProps } from "react-router";
 
@@ -18,6 +18,13 @@ const MovieList: React.FC<RouteComponentProps> = ({ history }) => {
             <IonHeader>
                 <IonToolbar>
                     <IonTitle>MovieBox</IonTitle>
+                {/* <IonFab vertical="bottom" horizontal="end" slot="fixed"> */}
+                    <IonButtons slot="end">
+                        <IonButton onClick={() => history.push(`/movie`)}>
+                            <IonIcon color="light" icon={add} />
+                        </IonButton>
+                    </IonButtons>
+                {/* </IonFab> */}
                 </IonToolbar>
             </IonHeader>
             <IonContent>
@@ -31,11 +38,6 @@ const MovieList: React.FC<RouteComponentProps> = ({ history }) => {
                 {fetchingError && (
                     <div>{ fetchingError.message || 'Failed to fetch movies'}</div>
                 )}
-                <IonFab vertical="bottom" horizontal="end" slot="fixed">
-                    <IonFabButton onClick={() => history.push(`/movie`)}>
-                        <IonIcon icon={add} />
-                    </IonFabButton>
-                </IonFab>
             </IonContent>
         </IonPage>
     );

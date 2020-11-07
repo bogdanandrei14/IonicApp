@@ -78,6 +78,7 @@ export const MovieProvider: React.FC<MovieProviderProps> = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
     const { movies, fetching, fetchingError, saving, savingError } = state;
     useEffect(getMoviesEffect, []);
+    useEffect(wsEffect, []);
     const saveMovie = useCallback<SaveMovieFn>(saveMovieCallback, []);
     const value = { movies, fetching, fetchingError, saving, savingError, saveMovie };
     log('returns');

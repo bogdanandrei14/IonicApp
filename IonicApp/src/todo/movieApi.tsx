@@ -5,8 +5,8 @@ import { MovieProps } from "./MovieProps";
 
 const log = getLogger('movieAPI');
 
-const baseUrl = 'http://localhost:3000';
-const movieUrl = `${baseUrl}/movie`;
+const baseUrl = 'localhost:3000';
+const movieUrl = `http://${baseUrl}/movie`;
 
 interface ResponseProps<T> {
     data: T;
