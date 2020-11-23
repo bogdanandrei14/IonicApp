@@ -14,7 +14,8 @@ interface MovieEditProps extends RouteComponentProps<{
 }> {}
 
 const MovieEdit: React.FC<MovieEditProps> = ({ history, match }) => {
-    const { movies, saving, savingError, saveMovie } = useContext(MovieContext);
+    const { movies, saving, savingError, saveMovie, deleteMovie } = useContext(MovieContext);
+    log("movies de la edit 1: ", movies)
     const [nume, setNume] = useState('');
     const [gen, setGen] = useState('');
     const [an_aparitie, setAn] = useState('');
@@ -24,19 +25,30 @@ const MovieEdit: React.FC<MovieEditProps> = ({ history, match }) => {
     useEffect(() => {
         log('useEffect');
         const routeId = match.params.id || '';
-        const movie = movies?.find(mv => mv.id === routeId);
+        log("routeId edit: ", routeId);
+        log("movies de la edit 2: ", movies)
+        const movie = movies?.find(it => it._id === routeId);
+        log("moviee edit: ", movie);
         setMovie(movie);
+        log("dupa setMovie");
         if (movie){
+            log("in if dupa setMovie")
             setNume(movie.nume);
             setGen(movie.gen);
             setAn(movie.an_aparitie);
             setDurata(movie.durata);
             setDescriere(movie.descriere);
         }
+        log("dupa if setMovie");
     }, [match.params.id, movies]);
     const handleSave = () => {
         const editedMovie = movie ? { ...movie, nume, gen, an_aparitie, durata, descriere } : { nume, gen, an_aparitie, durata, descriere };
+        log("editedMvie: ", editedMovie);
         saveMovie && saveMovie(editedMovie).then(() => history.goBack());
+    };
+    const handleDelete = () => {
+      const editMovie = movie ? { ...movie, nume, gen, an_aparitie, durata, descriere} : {nume, gen, an_aparitie, durata, descriere};
+      deleteMovie && deleteMovie(editMovie).then(() => history.goBack());
     };
     log('render');
     return (
@@ -45,11 +57,11 @@ const MovieEdit: React.FC<MovieEditProps> = ({ history, match }) => {
             <IonToolbar>
               <IonTitle>Edit Movie</IonTitle>
               <IonButtons slot="end">
-                <IonButton>
-                  EDIT
-                </IonButton>
                 <IonButton onClick={handleSave}>
                   Save
+                </IonButton>
+                <IonButton onClick={handleDelete}>
+                  Delete
                 </IonButton>
               </IonButtons>
             </IonToolbar>

@@ -194,7 +194,7 @@ http://ionicframework.com/docs/theming/ */
    */
 
   .md body {
-    --ion-background-color: #b3f5fa;
+    --ion-background-color: #898b8b;
     --ion-background-color-rgb: 18,18,18;
 
     --ion-text-color: #0e0909;
@@ -230,6 +230,6 @@ http://ionicframework.com/docs/theming/ */
 
     --ion-card-background: #1e1e1e;
 
-    
+    --ion-select-option:  #1e1e1e;
   }
 }

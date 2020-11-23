@@ -1,5 +1,5 @@
 export interface MovieProps {
-    id?: string;
+    _id?: string;
     nume: string;
     gen: string;
     an_aparitie: string;

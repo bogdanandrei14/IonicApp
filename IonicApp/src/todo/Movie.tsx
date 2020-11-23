@@ -8,10 +8,10 @@ interface MoviePropsExt extends MovieProps {
 }
 
 // const Movie: React.FC<MoviePropsExt> = ({id, nume, gen, an_aparitie, durata, descriere}) => {
-const Movie: React.FC<MoviePropsExt> = ({ id, nume, gen, an_aparitie, durata, descriere, onEdit }) => {
+const Movie: React.FC<MoviePropsExt> = ({ _id, nume, gen, an_aparitie, durata, descriere, onEdit }) => {
     return (
         // <div>{nume}</div>
-        <IonItem onClick={() => onEdit(id)}>
+        <IonItem onClick={() => onEdit(_id)}>
             <IonLabel>{nume}</IonLabel>
         </IonItem>
     );
